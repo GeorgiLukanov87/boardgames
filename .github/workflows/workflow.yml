@@ -1,17 +1,18 @@
+
 name: Build and test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
-  build-test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout github repository
+    - name: Checkout repository
       uses: actions/checkout@v3
       
     - name: Use Node.js 18.x
@@ -19,12 +20,12 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
-
-    - name: Install dependencies package json
-    - run: npm run install
-
-    - name: Display name
-    - run: echo georgilukanov
-
+        
+    - name: Install package json
+      run: npm install
+      
     - name: Run unit tests
-    - run: npm run test:unit
+      run: npm run test:unit
+      
+    - name: Display username
+      run: echo "georgilukanov"
